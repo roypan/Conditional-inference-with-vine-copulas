@@ -1,6 +1,5 @@
 library(statmod)
 library(VineCopula)
-library(CopulaModel) # this package in not avaible on CRAN. it can be installed following instructions on https://copula.stat.ubc.ca/
 
 # the function to perform cross prediction for the index-th variable
 # udat: a n*d matrix of u-scores, the index-th dimension can be NA or any arbitrary values
