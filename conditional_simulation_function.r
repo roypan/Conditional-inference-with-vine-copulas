@@ -41,7 +41,7 @@ varray2M = function(A, iprint = F, str = "") {
 # Arguments:
 # p: vector of length d, e.g. runif(d)
 # nsim: sample size for simulation
-# A: d*d vine array, or ntrunc*d vine array as only ntrunc rows are used
+# A: d*d vine array, or ntrunc*d vine array as only ntrunc rows are used. The variable in the first column is set to the fixed value.
 # ntrunc: truncation level between 1 and d-1
 # qcond: function for inverse conditional cdf C_{U|V}^{-1}(u|v)
 # pcond: function for conditional cdf C_{U|V}(u|v)
@@ -54,7 +54,7 @@ varray2M = function(A, iprint = F, str = "") {
 # extq: the quantile value that the first variable is fixed to
 # iprint: print flag for intermediate results
 #
-# Output: the simulated u-scores with the first column fixed to extq
+# Output: the simulated u-scores with the A[1,1]-th column fixed to extq
 
 rvinesimvec = function(nsim, A, ntrunc, parvec, np, qcondmat, pcondmat, extq, varname = numeric(0), iprint = F) {
   d = ncol(A)
