@@ -1,4 +1,6 @@
-source('cross_prediction.r')
+library(statmod)
+library(VineCopula)
+source('cross_prediction_function.r')
 
 N = 100
 n_train = 800
@@ -41,38 +43,38 @@ RVM = RVineMatrix(Matrix = Matrix, family = family,
 set.seed(10)
 
 for (sim_num in 1:N) {
-	print(sim_num)
-	simdata_u = RVineSim(1000, RVM)
-	simdata_x = qnorm(simdata_u)
-	
-	simdata_u_train = simdata_u[1:n_train, ]
-	simdata_u_test = simdata_u[-(1:n_train), ]
-	simdata_x_train = simdata_x[1:n_train, ]
-	simdata_x_test = simdata_x[-(1:n_train), ]
-	
-	# gaussian copula
-	RVM = RVineStructureSelect(simdata_u_train, familyset  = 1, progress = TRUE) 
-	
-	pred_results_gc_median = matrix(nrow = n_test, ncol = n_var)
-	pred_results_gc_lb = matrix(nrow = n_test, ncol = n_var)
-	pred_results_gc_ub = matrix(nrow = n_test, ncol = n_var)
-	
-	for (i in 1:n_var) {
-		pred_results_gc_median[, i] = qnorm(RVineCrossPrediction(simdata_u_test, RVM, i, .5))
-		pred_results_gc_lb[, i] = qnorm(RVineCrossPrediction(simdata_u_test, RVM, i, .1))
-		pred_results_gc_ub[, i] = qnorm(RVineCrossPrediction(simdata_u_test, RVM, i, .9))
-	}
-	
-	# vine copula
-	RVM = RVineStructureSelect(simdata_u_train, familyset  = 1:10, progress = TRUE) 
-	
-	pred_results_vc_median = matrix(nrow = n_test, ncol = n_var)
-	pred_results_vc_lb = matrix(nrow = n_test, ncol = n_var)
-	pred_results_vc_ub = matrix(nrow = n_test, ncol = n_var)
-	
-	for (i in 1:n_var) {
-		pred_results_vc_median[, i] = qnorm(RVineCrossPrediction(simdata_u_test, RVM, i, .5))
-		pred_results_vc_lb[, i] = qnorm(RVineCrossPrediction(simdata_u_test, RVM, i, .1))
-		pred_results_vc_ub[, i] = qnorm(RVineCrossPrediction(simdata_u_test, RVM, i, .9))
-	}
+  print(sim_num)
+  simdata_u = RVineSim(1000, RVM)
+  simdata_x = qnorm(simdata_u)
+  
+  simdata_u_train = simdata_u[1:n_train, ]
+  simdata_u_test = simdata_u[-(1:n_train), ]
+  simdata_x_train = simdata_x[1:n_train, ]
+  simdata_x_test = simdata_x[-(1:n_train), ]
+  
+  # gaussian copula
+  RVM = RVineStructureSelect(simdata_u_train, familyset  = 1, progress = TRUE) 
+  
+  pred_results_gc_median = matrix(nrow = n_test, ncol = n_var)
+  pred_results_gc_lb = matrix(nrow = n_test, ncol = n_var)
+  pred_results_gc_ub = matrix(nrow = n_test, ncol = n_var)
+  
+  for (i in 1:n_var) {
+    pred_results_gc_median[, i] = qnorm(RVineCrossPrediction(simdata_u_test, RVM, i, .5))
+    pred_results_gc_lb[, i] = qnorm(RVineCrossPrediction(simdata_u_test, RVM, i, .1))
+    pred_results_gc_ub[, i] = qnorm(RVineCrossPrediction(simdata_u_test, RVM, i, .9))
+  }
+  
+  # vine copula
+  RVM = RVineStructureSelect(simdata_u_train, familyset  = 1:10, progress = TRUE) 
+  
+  pred_results_vc_median = matrix(nrow = n_test, ncol = n_var)
+  pred_results_vc_lb = matrix(nrow = n_test, ncol = n_var)
+  pred_results_vc_ub = matrix(nrow = n_test, ncol = n_var)
+  
+  for (i in 1:n_var) {
+    pred_results_vc_median[, i] = qnorm(RVineCrossPrediction(simdata_u_test, RVM, i, .5))
+    pred_results_vc_lb[, i] = qnorm(RVineCrossPrediction(simdata_u_test, RVM, i, .1))
+    pred_results_vc_ub[, i] = qnorm(RVineCrossPrediction(simdata_u_test, RVM, i, .9))
+  }
 }
