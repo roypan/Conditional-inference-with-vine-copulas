@@ -30,7 +30,6 @@ qcondmat = matrix(c("",rep("qcondbvncop",3),"","",rep("qcondfrk",2),"","","","qc
 #[3,] ""   ""            ""            "qcondfrk"   
 #[4,] ""   ""            ""            ""           
 
-
 rvinesimvec(5, D, ntrunc = 3, parvec1, np, qcondmat, pcondmat, extq = .95, iprint = FALSE)
 #    [,1]      [,2]      [,3]      [,4]
 #[1,] 0.95 0.8060706 0.8696160 0.7819850
@@ -38,22 +37,6 @@ rvinesimvec(5, D, ntrunc = 3, parvec1, np, qcondmat, pcondmat, extq = .95, iprin
 #[3,] 0.95 0.8295451 0.4648344 0.4259508
 #[4,] 0.95 0.9322303 0.8989036 0.8293215
 #[5,] 0.95 0.8867755 0.7618500 0.9198797
-
-
-set.seed(10)
-D = matrix(c(4,4,1,3,0,1,4,1,0,0,3,4,0,0,0,2), d, d, byrow = TRUE) # the same vine array as above, except indices (1,2,3,4) are permuted to (4,1,3,2)
-#     [,1] [,2] [,3] [,4]
-#[1,]    4    4    1    3
-#[2,]    0    1    4    1
-#[3,]    0    0    3    4
-#[4,]    0    0    0    2
-rvinesimvec(5, D, ntrunc = 3, parvec1, np, qcondmat, pcondmat, extq = .95, iprint = FALSE) # generated data are the same
-#          [,1]      [,2]      [,3] [,4]
-#[1,] 0.8060706 0.7819850 0.8696160 0.95
-#[2,] 0.8305604 0.3824218 0.8432464 0.95
-#[3,] 0.8295451 0.4259508 0.4648344 0.95
-#[4,] 0.9322303 0.8293215 0.8989036 0.95
-#[5,] 0.8867755 0.9198797 0.7618500 0.95
 
 
 
@@ -112,3 +95,5 @@ rvinesimvec(5, D, ntrunc = 3, parvec4, np, qcondmat, pcondmat, extq = .95, iprin
 #[3,] 0.8985691 0.4572681 0.9058219 0.95
 #[4,] 0.3688029 0.6139390 0.8216701 0.95
 #[5,] 0.9289678 0.9670506 0.6495283 0.95
+
+# Remark: The general algorithm to convert to a vine array with a given variable in the first column will be presented elsewhere
