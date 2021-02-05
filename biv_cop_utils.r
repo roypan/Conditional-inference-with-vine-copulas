@@ -90,23 +90,39 @@ qcondmtcjr <- function(p, u, cpar) {
 
 ## MTCJu
 
-pmtcju <- function(u, v, cpar) v - pmtcj(1-u, v, cpar)
+pmtcju <- function(u, v, cpar) {
+  VineCopula::BiCopCDF(u, v, family=23, par=cpar)
+}
 
-logdmtcju <- function(u, v, cpar) logdmtcj(1-u, v, cpar)
+logdmtcju <- function(u, v, cpar) {
+  log(VineCopula::BiCopPDF(u, v, family=23, par=cpar))
+}
 
-pcondmtcju <- function(v, u, cpar) pcondmtcj(v, 1-u, cpar)
+pcondmtcju <- function(v, u, cpar) {
+  VineCopula::BiCopHfunc2(v, u, family=23, par=cpar)
+}
 
-qcondmtcju <- function(p, u, cpar) qcondmtcj(p, 1-u, cpar)
+qcondmtcju <- function(p, u, cpar) {
+  VineCopula::BiCopHinv2(p, u, family=23, par=cpar)
+}
 
 ## MTCJv
 
-pmtcjv <- function(u, v, cpar) u - pmtcj(u, 1-v, cpar)
+pmtcjv <- function(u, v, cpar) {
+  VineCopula::BiCopCDF(u, v, family=33, par=cpar)
+}
 
-logdmtcjv <- function(u, v, cpar) logdmtcj(u, 1-v, cpar)
+logdmtcjv <- function(u, v, cpar) {
+  log(VineCopula::BiCopPDF(u, v, family=33, par=cpar))
+}
 
-pcondmtcjv <- function(v, u, cpar) 1 - pcondmtcj(1-v, u, cpar)
+pcondmtcjv <- function(v, u, cpar) {
+  VineCopula::BiCopHfunc2(v, u, family=33, par=cpar)
+}
 
-qcondmtcjv <- function(p, u, cpar) 1 - qcondmtcj(1-p, u, cpar)
+qcondmtcjv <- function(p, u, cpar) {
+  VineCopula::BiCopHinv2(p, u, family=33, par=cpar)
+}
 
 ###########
 ##  Gumbel  ##
@@ -150,23 +166,39 @@ qcondgumr <- function(p, u, cpar) {
 
 ## Gumbelu
 
-pgumu <- function(u, v, cpar) v - pgum(1-u, v, cpar)
+pgumu <- function(u, v, cpar) {
+  VineCopula::BiCopCDF(u, v, family=24, par=cpar)
+}
 
-logdgumu <- function(u, v, cpar) logdgum(1-u, v, cpar)
+logdgumu <- function(u, v, cpar) {
+  log(VineCopula::BiCopPDF(u, v, family=24, par=cpar))
+}
 
-pcondgumu <- function(v, u, cpar) pcondgum(v, 1-u, cpar)
+pcondgumu <- function(v, u, cpar) {
+  VineCopula::BiCopHfunc2(v, u, family=24, par=cpar)
+}
 
-qcondgumu <- function(p, u, cpar) qcondgum(p, 1-u, cpar)
+qcondgumu <- function(p, u, cpar) {
+  VineCopula::BiCopHinv2(p, u, family=24, par=cpar)
+}
 
 ## Gumbelv
 
-pgumv <- function(u, v, cpar) u - pgum(u, 1-v, cpar)
+pgumv <- function(u, v, cpar) {
+  VineCopula::BiCopCDF(u, v, family=34, par=cpar)
+}
 
-logdgumv <- function(u, v, cpar) logdgum(u, 1-v, cpar)
+logdgumv <- function(u, v, cpar) {
+  log(VineCopula::BiCopPDF(u, v, family=34, par=cpar))
+}
 
-pcondgumv <- function(v, u, cpar) 1 - pcondgum(1-v, u, cpar)
+pcondgumv <- function(v, u, cpar) {
+  VineCopula::BiCopHfunc2(v, u, family=34, par=cpar)
+}
 
-qcondgumv <- function(p, u, cpar) 1 - qcondgum(1-p, u, cpar)
+qcondgumv <- function(p, u, cpar) {
+  VineCopula::BiCopHinv2(p, u, family=34, par=cpar)
+}
 
 ###########
 ##  Frank  ##
@@ -232,23 +264,39 @@ qcondjoer <- function(p, u, cpar) {
 
 ## Joeu
 
-pjoeu <- function(u, v, cpar) v - pjoe(1-u, v, cpar)
+pjoeu <- function(u, v, cpar) {
+  VineCopula::BiCopCDF(u, v, family=26, par=cpar)
+}
 
-logdjoeu <- function(u, v, cpar) logdjoe(1-u, v, cpar)
+logdjoeu <- function(u, v, cpar) {
+  log(VineCopula::BiCopPDF(u, v, family=26, par=cpar))
+}
 
-pcondjoeu <- function(v, u, cpar) pcondjoe(v, 1-u, cpar)
+pcondjoeu <- function(v, u, cpar) {
+  VineCopula::BiCopHfunc2(v, u, family=26, par=cpar)
+}
 
-qcondjoeu <- function(p, u, cpar) qcondjoe(p, 1-u, cpar)
+qcondjoeu <- function(p, u, cpar) {
+  VineCopula::BiCopHinv2(p, u, family=26, par=cpar)
+}
 
 ## Joev
 
-pjoev <- function(u, v, cpar) u - pjoe(u, 1-v, cpar)
+pjoev <- function(u, v, cpar) {
+  VineCopula::BiCopCDF(u, v, family=36, par=cpar)
+}
 
-logdjoev <- function(u, v, cpar) logdjoe(u, 1-v, cpar)
+logdjoev <- function(u, v, cpar) {
+  log(VineCopula::BiCopPDF(u, v, family=36, par=cpar))
+}
 
-pcondjoev <- function(v, u, cpar) 1 - pcondjoe(1-v, u, cpar)
+pcondjoev <- function(v, u, cpar) {
+  VineCopula::BiCopHfunc2(v, u, family=36, par=cpar)
+}
 
-qcondjoev <- function(p, u, cpar) 1 - qcondjoe(1-p, u, cpar)
+qcondjoev <- function(p, u, cpar) {
+  VineCopula::BiCopHinv2(p, u, family=36, par=cpar)
+}
 
 ###########
 ##  BB1  ##
@@ -292,23 +340,39 @@ qcondbb1r <- function(p, u, cpar) {
 
 ## BB1u
 
-pbb1u <- function(u, v, cpar) v - pbb1(1-u, v, cpar)
+pbb1u <- function(u, v, cpar) {
+  VineCopula::BiCopCDF(u, v, family=27, par=cpar[1], par2=cpar[2])
+}
 
-logdbb1u <- function(u, v, cpar) logdbb1(1-u, v, cpar)
+logdbb1u <- function(u, v, cpar) {
+  log(VineCopula::BiCopPDF(u, v, family=27, par=cpar[1], par2=cpar[2]))
+}
 
-pcondbb1u <- function(v, u, cpar) pcondbb1(v, 1-u, cpar)
+pcondbb1u <- function(v, u, cpar) {
+  VineCopula::BiCopHfunc2(v, u, family=27, par=cpar[1], par2=cpar[2])
+}
 
-qcondbb1u <- function(p, u, cpar) qcondbb1(p, 1-u, cpar)
+qcondbb1u <- function(p, u, cpar) {
+  VineCopula::BiCopHinv2(p, u, family=27, par=cpar[1], par2=cpar[2])
+}
 
 ## BB1v
 
-pbb1v <- function(u, v, cpar) u - pbb1(u, 1-v, cpar)
+pbb1v <- function(u, v, cpar) {
+  VineCopula::BiCopCDF(u, v, family=37, par=cpar[1], par2=cpar[2])
+}
 
-logdbb1v <- function(u, v, cpar) logdbb1(u, 1-v, cpar)
+logdbb1v <- function(u, v, cpar) {
+  log(VineCopula::BiCopPDF(u, v, family=37, par=cpar[1], par2=cpar[2]))
+}
 
-pcondbb1v <- function(v, u, cpar) 1 - pcondbb1(1-v, u, cpar)
+pcondbb1v <- function(v, u, cpar) {
+  VineCopula::BiCopHfunc2(v, u, family=37, par=cpar[1], par2=cpar[2])
+}
 
-qcondbb1v <- function(p, u, cpar) 1 - qcondbb1(1-p, u, cpar)
+qcondbb1v <- function(p, u, cpar) {
+  VineCopula::BiCopHinv2(p, u, family=37, par=cpar[1], par2=cpar[2])
+}
 
 ###########
 ##  BB6  ##
@@ -352,23 +416,39 @@ qcondbb6r <- function(p, u, cpar) {
 
 ## BB6u
 
-pbb6u <- function(u, v, cpar) v - pbb6(1-u, v, cpar)
+pbb6u <- function(u, v, cpar) {
+  VineCopula::BiCopCDF(u, v, family=28, par=cpar[1], par2=cpar[2])
+}
 
-logdbb6u <- function(u, v, cpar) logdbb6(1-u, v, cpar)
+logdbb6u <- function(u, v, cpar) {
+  log(VineCopula::BiCopPDF(u, v, family=28, par=cpar[1], par2=cpar[2]))
+}
 
-pcondbb6u <- function(v, u, cpar) pcondbb6(v, 1-u, cpar)
+pcondbb6u <- function(v, u, cpar) {
+  VineCopula::BiCopHfunc2(v, u, family=28, par=cpar[1], par2=cpar[2])
+}
 
-qcondbb6u <- function(p, u, cpar) qcondbb6(p, 1-u, cpar)
+qcondbb6u <- function(p, u, cpar) {
+  VineCopula::BiCopHinv2(p, u, family=28, par=cpar[1], par2=cpar[2])
+}
 
 ## BB6v
 
-pbb6v <- function(u, v, cpar) u - pbb6(u, 1-v, cpar)
+pbb6v <- function(u, v, cpar) {
+  VineCopula::BiCopCDF(u, v, family=38, par=cpar[1], par2=cpar[2])
+}
 
-logdbb6v <- function(u, v, cpar) logdbb6(u, 1-v, cpar)
+logdbb6v <- function(u, v, cpar) {
+  log(VineCopula::BiCopPDF(u, v, family=38, par=cpar[1], par2=cpar[2]))
+}
 
-pcondbb6v <- function(v, u, cpar) 1 - pcondbb6(1-v, u, cpar)
+pcondbb6v <- function(v, u, cpar) {
+  VineCopula::BiCopHfunc2(v, u, family=38, par=cpar[1], par2=cpar[2])
+}
 
-qcondbb6v <- function(p, u, cpar) 1 - qcondbb6(1-p, u, cpar)
+qcondbb6v <- function(p, u, cpar) {
+  VineCopula::BiCopHinv2(p, u, family=38, par=cpar[1], par2=cpar[2])
+}
 
 ###########
 ##  BB7  ##
@@ -412,23 +492,39 @@ qcondbb7r <- function(p, u, cpar) {
 
 ## BB7u
 
-pbb7u <- function(u, v, cpar) v - pbb7(1-u, v, cpar)
+pbb7u <- function(u, v, cpar) {
+  VineCopula::BiCopCDF(u, v, family=29, par=cpar[1], par2=cpar[2])
+}
 
-logdbb7u <- function(u, v, cpar) logdbb7(1-u, v, cpar)
+logdbb7u <- function(u, v, cpar) {
+  log(VineCopula::BiCopPDF(u, v, family=29, par=cpar[1], par2=cpar[2]))
+}
 
-pcondbb7u <- function(v, u, cpar) pcondbb7(v, 1-u, cpar)
+pcondbb7u <- function(v, u, cpar) {
+  VineCopula::BiCopHfunc2(v, u, family=29, par=cpar[1], par2=cpar[2])
+}
 
-qcondbb7u <- function(p, u, cpar) qcondbb7(p, 1-u, cpar)
+qcondbb7u <- function(p, u, cpar) {
+  VineCopula::BiCopHinv2(p, u, family=29, par=cpar[1], par2=cpar[2])
+}
 
 ## BB7v
 
-pbb7v <- function(u, v, cpar) u - pbb7(u, 1-v, cpar)
+pbb7v <- function(u, v, cpar) {
+  VineCopula::BiCopCDF(u, v, family=39, par=cpar[1], par2=cpar[2])
+}
 
-logdbb7v <- function(u, v, cpar) logdbb7(u, 1-v, cpar)
+logdbb7v <- function(u, v, cpar) {
+  log(VineCopula::BiCopPDF(u, v, family=39, par=cpar[1], par2=cpar[2]))
+}
 
-pcondbb7v <- function(v, u, cpar) 1 - pcondbb7(1-v, u, cpar)
+pcondbb7v <- function(v, u, cpar) {
+  VineCopula::BiCopHfunc2(v, u, family=39, par=cpar[1], par2=cpar[2])
+}
 
-qcondbb7v <- function(p, u, cpar) 1 - qcondbb7(1-p, u, cpar)
+qcondbb7v <- function(p, u, cpar) {
+  VineCopula::BiCopHinv2(p, u, family=39, par=cpar[1], par2=cpar[2])
+}
 
 ###########
 ##  BB8  ##
@@ -472,20 +568,36 @@ qcondbb8r <- function(p, u, cpar) {
 
 ## BB8u
 
-pbb8u <- function(u, v, cpar) v - pbb8(1-u, v, cpar)
+pbb8u <- function(u, v, cpar) {
+  VineCopula::BiCopCDF(u, v, family=30, par=cpar[1], par2=cpar[2])
+}
 
-logdbb8u <- function(u, v, cpar) logdbb8(1-u, v, cpar)
+logdbb8u <- function(u, v, cpar) {
+  log(VineCopula::BiCopPDF(u, v, family=30, par=cpar[1], par2=cpar[2]))
+}
 
-pcondbb8u <- function(v, u, cpar) pcondbb8(v, 1-u, cpar)
+pcondbb8u <- function(v, u, cpar) {
+  VineCopula::BiCopHfunc2(v, u, family=30, par=cpar[1], par2=cpar[2])
+}
 
-qcondbb8u <- function(p, u, cpar) qcondbb8(p, 1-u, cpar)
+qcondbb8u <- function(p, u, cpar) {
+  VineCopula::BiCopHinv2(p, u, family=30, par=cpar[1], par2=cpar[2])
+}
 
 ## BB8v
 
-pbb8v <- function(u, v, cpar) u - pbb8(u, 1-v, cpar)
+pbb8v <- function(u, v, cpar) {
+  VineCopula::BiCopCDF(u, v, family=40, par=cpar[1], par2=cpar[2])
+}
 
-logdbb8v <- function(u, v, cpar) logdbb8(u, 1-v, cpar)
+logdbb8v <- function(u, v, cpar) {
+  log(VineCopula::BiCopPDF(u, v, family=40, par=cpar[1], par2=cpar[2]))
+}
 
-pcondbb8v <- function(v, u, cpar) 1 - pcondbb8(1-v, u, cpar)
+pcondbb8v <- function(v, u, cpar) {
+  VineCopula::BiCopHfunc2(v, u, family=40, par=cpar[1], par2=cpar[2])
+}
 
-qcondbb8v <- function(p, u, cpar) 1 - qcondbb8(1-p, u, cpar)
+qcondbb8v <- function(p, u, cpar) {
+  VineCopula::BiCopHinv2(p, u, family=40, par=cpar[1], par2=cpar[2])
+}
