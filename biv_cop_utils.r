@@ -91,11 +91,11 @@ qcondmtcjr <- function(p, u, cpar) {
 ## MTCJu
 
 pmtcju <- function(u, v, cpar) {
-  VineCopula::BiCopCDF(u, v, family=33, par=cpar)
+  VineCopula::BiCopCDF(u, v, family=23, par=cpar)
 }
 
 logdmtcju <- function(u, v, cpar) {
-  log(VineCopula::BiCopPDF(u, v, family=33, par=cpar))
+  log(VineCopula::BiCopPDF(u, v, family=23, par=cpar))
 }
 
 pcondmtcju <- function(v, u, cpar) {
@@ -109,11 +109,11 @@ qcondmtcju <- function(p, u, cpar) {
 ## MTCJv
 
 pmtcjv <- function(u, v, cpar) {
-  VineCopula::BiCopCDF(u, v, family=23, par=cpar)
+  VineCopula::BiCopCDF(u, v, family=33, par=cpar)
 }
 
 logdmtcjv <- function(u, v, cpar) {
-  log(VineCopula::BiCopPDF(u, v, family=23, par=cpar))
+  log(VineCopula::BiCopPDF(u, v, family=33, par=cpar))
 }
 
 pcondmtcjv <- function(v, u, cpar) {
@@ -167,11 +167,11 @@ qcondgumr <- function(p, u, cpar) {
 ## Gumbelu
 
 pgumu <- function(u, v, cpar) {
-  VineCopula::BiCopCDF(u, v, family=34, par=cpar)
+  VineCopula::BiCopCDF(u, v, family=24, par=cpar)
 }
 
 logdgumu <- function(u, v, cpar) {
-  log(VineCopula::BiCopPDF(u, v, family=34, par=cpar))
+  log(VineCopula::BiCopPDF(u, v, family=24, par=cpar))
 }
 
 pcondgumu <- function(v, u, cpar) {
@@ -185,11 +185,11 @@ qcondgumu <- function(p, u, cpar) {
 ## Gumbelv
 
 pgumv <- function(u, v, cpar) {
-  VineCopula::BiCopCDF(u, v, family=24, par=cpar)
+  VineCopula::BiCopCDF(u, v, family=34, par=cpar)
 }
 
 logdgumv <- function(u, v, cpar) {
-  log(VineCopula::BiCopPDF(u, v, family=24, par=cpar))
+  log(VineCopula::BiCopPDF(u, v, family=34, par=cpar))
 }
 
 pcondgumv <- function(v, u, cpar) {
@@ -265,11 +265,11 @@ qcondjoer <- function(p, u, cpar) {
 ## Joeu
 
 pjoeu <- function(u, v, cpar) {
-  VineCopula::BiCopCDF(u, v, family=36, par=cpar)
+  VineCopula::BiCopCDF(u, v, family=26, par=cpar)
 }
 
 logdjoeu <- function(u, v, cpar) {
-  log(VineCopula::BiCopPDF(u, v, family=36, par=cpar))
+  log(VineCopula::BiCopPDF(u, v, family=26, par=cpar))
 }
 
 pcondjoeu <- function(v, u, cpar) {
@@ -283,11 +283,11 @@ qcondjoeu <- function(p, u, cpar) {
 ## Joev
 
 pjoev <- function(u, v, cpar) {
-  VineCopula::BiCopCDF(u, v, family=26, par=cpar)
+  VineCopula::BiCopCDF(u, v, family=36, par=cpar)
 }
 
 logdjoev <- function(u, v, cpar) {
-  log(VineCopula::BiCopPDF(u, v, family=26, par=cpar))
+  log(VineCopula::BiCopPDF(u, v, family=36, par=cpar))
 }
 
 pcondjoev <- function(v, u, cpar) {
@@ -341,11 +341,11 @@ qcondbb1r <- function(p, u, cpar) {
 ## BB1u
 
 pbb1u <- function(u, v, cpar) {
-  VineCopula::BiCopCDF(u, v, family=37, par=cpar[1], par2=cpar[2])
+  VineCopula::BiCopCDF(u, v, family=27, par=cpar[1], par2=cpar[2])
 }
 
 logdbb1u <- function(u, v, cpar) {
-  log(VineCopula::BiCopPDF(u, v, family=37, par=cpar[1], par2=cpar[2]))
+  log(VineCopula::BiCopPDF(u, v, family=27, par=cpar[1], par2=cpar[2]))
 }
 
 pcondbb1u <- function(v, u, cpar) {
@@ -359,11 +359,11 @@ qcondbb1u <- function(p, u, cpar) {
 ## BB1v
 
 pbb1v <- function(u, v, cpar) {
-  VineCopula::BiCopCDF(u, v, family=27, par=cpar[1], par2=cpar[2])
+  VineCopula::BiCopCDF(u, v, family=37, par=cpar[1], par2=cpar[2])
 }
 
 logdbb1v <- function(u, v, cpar) {
-  log(VineCopula::BiCopPDF(u, v, family=27, par=cpar[1], par2=cpar[2]))
+  log(VineCopula::BiCopPDF(u, v, family=37, par=cpar[1], par2=cpar[2]))
 }
 
 pcondbb1v <- function(v, u, cpar) {
@@ -417,11 +417,11 @@ qcondbb8r <- function(p, u, cpar) {
 ## BB8u
 
 pbb8u <- function(u, v, cpar) {
-  VineCopula::BiCopCDF(u, v, family=40, par=cpar[1], par2=cpar[2])
+  VineCopula::BiCopCDF(u, v, family=30, par=cpar[1], par2=cpar[2])
 }
 
 logdbb8u <- function(u, v, cpar) {
-  log(VineCopula::BiCopPDF(u, v, family=40, par=cpar[1], par2=cpar[2]))
+  log(VineCopula::BiCopPDF(u, v, family=30, par=cpar[1], par2=cpar[2]))
 }
 
 pcondbb8u <- function(v, u, cpar) {
@@ -435,11 +435,11 @@ qcondbb8u <- function(p, u, cpar) {
 ## BB8v
 
 pbb8v <- function(u, v, cpar) {
-  VineCopula::BiCopCDF(u, v, family=30, par=cpar[1], par2=cpar[2])
+  VineCopula::BiCopCDF(u, v, family=40, par=cpar[1], par2=cpar[2])
 }
 
 logdbb8v <- function(u, v, cpar) {
-  log(VineCopula::BiCopPDF(u, v, family=30, par=cpar[1], par2=cpar[2]))
+  log(VineCopula::BiCopPDF(u, v, family=40, par=cpar[1], par2=cpar[2]))
 }
 
 pcondbb8v <- function(v, u, cpar) {
