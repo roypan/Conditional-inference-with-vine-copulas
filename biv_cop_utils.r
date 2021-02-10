@@ -4,8 +4,8 @@ clip_to_unit <- function(value) {
 }
 
 # Assume starting bivariate copula is permutation summetric.
-# u-reflected is matched to 90 degrees counterclockwise rotation (21-29 in VineCopula)
-# v-reflected is matched to 270 degrees counterclockwise rotation (31-39)
+# u-reflected corresponds to 90 degrees counterclockwise rotation (families 21-30) in VineCopula package
+# v-reflected corresponds to 270 degrees counterclockwise rotation (families 31-40) in VineCopula package
 
 # page 272 of Joe (2014): with additional conditional C_{1|2}
 
