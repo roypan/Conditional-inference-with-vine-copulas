@@ -47,6 +47,15 @@ varray2M = function(A, iprint = F, str = "") {
 # nsim: sample size for simulation
 # A: d*d vine array, or ntrunc*d vine array as only ntrunc rows are used. The variable in the first column is set to the fixed value.
 # ntrunc: truncation level between 1 and d-1
+# fam: d by d matrix for the copula families coded by the VineCopula package
+# param1: d by d matrix for the first parameter of the copula models
+# param2: d by d matrix for the second parameter of the copula models
+# varname: variable name, optional
+# extq: the quantile value that the first variable is fixed to
+# iprint: print flag for intermediate results
+#
+# Output: the simulated u-scores with the A[1,1]-th column fixed to extq
+
 # qcond21: function for inverse conditional cdf C_{2|1}^{-1}(p|u)
 # pcond12: function for conditional cdf C_{1|2}(u|v)
 # qcond21mat: matrix of names of conditional quantile functions for trees 1,...,ntrunc
@@ -54,13 +63,8 @@ varray2M = function(A, iprint = F, str = "") {
 # parmat: d*d matrix: for rvinesim1, where all bivariate copula families have 1 parameter, parameter in parmat[ell,j] for ell<j is the parameter of the copula associated with A[ell,j]
 # parvec: vector with the union of the parameters associated with the copulas in A[ell,j], j=ell+1,...,d. ell=1,...,ntrunc
 # np: d*d matrix of the dimension of the vector for the copulas in A[ell,j], j=ell+1,...,d. ell=1,...,ntrunc; the function will determine parvec[ip1:ip2] for the copula associated with A[ell,j]
-# varname: variable name, optional
-# extq: the quantile value that the first variable is fixed to
-# iprint: print flag for intermediate results
-#
-# Output: the simulated u-scores with the A[1,1]-th column fixed to extq
 
-rvinesimvec = function(nsim, A, ntrunc, parvec, np, qcond21mat, pcond12mat, extq, varname = numeric(0), iprint = F) {
+rvinesimvec = function(nsim, A, ntrunc, fam, param1, param2, extq, varname = numeric(0), iprint = F) {
   d = ncol(A)
   diagA = diag(A)
   dict = data.frame(Col1=c(0, diagA), Col2=0:d)
@@ -94,12 +98,10 @@ rvinesimvec = function(nsim, A, ntrunc, parvec, np, qcond21mat, pcond12mat, extq
   u[, 1] = p[, 1]
   qq[, 1, 1] = p[, 1]
   qq[, 2, 2] = p[, 2]
-  qcond21 = match.fun(qcond21mat[1, 2])
-  u[, 2] = qcond21(p[, 2], p[, 1], parvec[ip1[1, 2]:ip2[1, 2]])
+  u[, 2] = BiCopHinv1(p[, 1], p[, 2], family = fam[1, 2], par = param1[1, 2], par2 = param2[1, 2])
   qq[, 1, 2] = u[, 2]
   if (icomp[1, 2] == 1) {
-    pcond12 = match.fun(pcond12mat[1, 2])
-    v[, 1, 2] = pcond12(u[, 1], u[, 2], parvec[ip1[1, 2]:ip2[1, 2]])
+    v[, 1, 2] = BiCopHfunc2(u[, 1], u[, 2], family = fam[1, 2], par = param1[1, 2], par2 = param2[1, 2])
   }
   for (j in 3:d) {
     tt = min(ntrunc, j - 1)
@@ -112,15 +114,12 @@ rvinesimvec = function(nsim, A, ntrunc, parvec, np, qcond21mat, pcond12mat, extq
         else {
           s = v[, ell - 1, M[ell, j]]
         }
-        qcond21 = match.fun(qcond21mat[ell, j])
-        qq[, ell, j] = qcond21(qq[, ell + 1, j], s, parvec[ip1[ell, j]:ip2[ell, j]])
+        qq[, ell, j] = BiCopHinv1(s, qq[, ell + 1, j], family = fam[ell, j], par = param1[ell, j], par2 = param2[ell, j])
       }
     }
-    qcond21 = match.fun(qcond21mat[1, j])
-    qq[, 1, j] = qcond21(qq[, 2, j], u[, A[1, j]], parvec[ip1[1, j]:ip2[1, j]])
+    qq[, 1, j] = BiCopHinv1(u[, A[1, j]], qq[, 2, j], family = fam[1, j], par = param1[1, j], par2 = param2[1, j])
     u[, j] = qq[, 1, j]
-    pcond12 = match.fun(pcond12mat[1, j])
-    v[, 1, j] = pcond12(u[, A[1, j]], u[, j], parvec[ip1[1, j]:ip2[1, j]])
+    v[, 1, j] = BiCopHfunc2(u[, A[1, j]], u[, j], family = fam[1, j], par = param1[1, j], par2 = param2[1, j])
     if (tt > 1) {
       for (ell in 2:tt) {
         if (A[ell, j] == M[ell, j]) {
@@ -130,8 +129,7 @@ rvinesimvec = function(nsim, A, ntrunc, parvec, np, qcond21mat, pcond12mat, extq
           s = v[, ell - 1, M[ell, j]]
         }
         if (icomp[ell, j] == 1) {
-          pcond12 = match.fun(pcond12mat[ell, j])
-          v[, ell, j] = pcond12(s, qq[, ell, j], parvec[ip1[ell, j]:ip2[ell, j]])
+          v[, ell, j] = BiCopHfunc2(s, qq[, ell, j], family = fam[ell, j], par = param1[ell, j], par2 = param2[ell, j])
         }
       }
     }
