@@ -56,14 +56,6 @@ varray2M = function(A, iprint = F, str = "") {
 #
 # Output: the simulated u-scores with the A[1,1]-th column fixed to extq
 
-# qcond21: function for inverse conditional cdf C_{2|1}^{-1}(p|u)
-# pcond12: function for conditional cdf C_{1|2}(u|v)
-# qcond21mat: matrix of names of conditional quantile functions for trees 1,...,ntrunc
-# pcond12mat: matrix of names of conditional cdfs for trees 1,...,ntrunc
-# parmat: d*d matrix: for rvinesim1, where all bivariate copula families have 1 parameter, parameter in parmat[ell,j] for ell<j is the parameter of the copula associated with A[ell,j]
-# parvec: vector with the union of the parameters associated with the copulas in A[ell,j], j=ell+1,...,d. ell=1,...,ntrunc
-# np: d*d matrix of the dimension of the vector for the copulas in A[ell,j], j=ell+1,...,d. ell=1,...,ntrunc; the function will determine parvec[ip1:ip2] for the copula associated with A[ell,j]
-
 rvinesimvec = function(nsim, A, ntrunc, fam, param1, param2, extq, varname = numeric(0), iprint = F) {
   d = ncol(A)
   diagA = diag(A)
