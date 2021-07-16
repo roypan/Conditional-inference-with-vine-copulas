@@ -64,20 +64,6 @@ rvinesimvec = function(nsim, A, ntrunc, fam, param1, param2, extq, varname = num
   # The next line temporarily permutes variable indices so that diagonal of vine array is 1:d in order to apply Algorithm 17 in Joe (2014)
   A = matrix(dict$Col2[match(A, dict$Col1)], nrow = d, byrow = FALSE)
   
-  ii = 0
-  ip1 = matrix(0, d, d)
-  ip2 = matrix(0, d, d)
-  for (ell in 1:ntrunc) {
-    for (j in (ell + 1):d) {
-      ip1[ell, j] = ii + 1
-      ip2[ell, j] = ii + np[ell, j]
-      ii = ii + np[ell, j]
-    }
-  }
-  if (iprint) {
-    print(ip1)
-    print(ip2)
-  }
   out = varray2M(A)
   M = out$mxarray
   icomp = out$icomp
